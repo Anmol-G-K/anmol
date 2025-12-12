@@ -87,6 +87,41 @@ nav .logo {
     background-clip: text;
 }
 
+.lightning {
+    display: inline-block;
+    color: #fbbf24;
+    text-shadow: 0 0 2px rgba(251, 191, 36, 0.3);
+    animation: stutter-blink 2s ease-in-out infinite;
+    font-weight: bold;
+}
+
+@keyframes stutter-blink {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 2px rgba(251, 191, 36, 0.3);
+    }
+    10% {
+        opacity: 0.4;
+        text-shadow: 0 0 1px rgba(251, 191, 36, 0.2);
+    }
+    20% {
+        opacity: 1;
+        text-shadow: 0 0 2px rgba(251, 191, 36, 0.3);
+    }
+    30% {
+        opacity: 0.3;
+        text-shadow: 0 0 1px rgba(251, 191, 36, 0.2);
+    }
+    40% {
+        opacity: 1;
+        text-shadow: 0 0 4px rgba(251, 191, 36, 0.5);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 2px rgba(251, 191, 36, 0.3);
+    }
+}
+
 nav ul {
     list-style: none;
     display: flex;

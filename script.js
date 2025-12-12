@@ -1,4 +1,23 @@
-// Theme Toggle Functionality
+// Randomized Lightning Blink Effect
+(function() {
+    const lightning = document.querySelector('.lightning');
+    if (!lightning) return;
+    
+    function getRandomDuration() {
+        // Random duration between 1.5s and 2.5s for visible stuttery effect
+        return (Math.random() * 1 + 1.5).toFixed(2) + 's';
+    }
+    
+    function triggerBlink() {
+        const duration = getRandomDuration();
+        lightning.style.animationDuration = duration;
+        
+        // Random wait between 2s to 4s before next blink sequence
+        setTimeout(triggerBlink, (Math.random() * 2000 + 2000));
+    }
+    
+    triggerBlink();
+})();
 (function() {
     const themeToggle = document.getElementById('themeToggle');
     if (!themeToggle) return;
