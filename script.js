@@ -1,41 +1,34 @@
 // Theme Toggle Functionality
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
     const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
+    if (!themeToggle) return;
     
-    if (!themeToggle) {
-        console.error('Theme toggle button not found');
-        return;
-    }
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
     
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
-    
-    if (currentTheme === 'light-mode') {
-        htmlElement.classList.add('light-mode');
+    // Set initial theme
+    if (savedTheme === 'light') {
+        html.style.colorScheme = 'light';
+        html.setAttribute('data-theme', 'light');
         themeToggle.textContent = '🌙';
     } else {
-        htmlElement.classList.remove('light-mode');
+        html.style.colorScheme = 'dark';
+        html.setAttribute('data-theme', 'dark');
         themeToggle.textContent = '💡';
     }
     
-    // Theme toggle click handler
-    themeToggle.addEventListener('click', function() {
-        const isLightMode = htmlElement.classList.contains('light-mode');
+    // Toggle on click
+    themeToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const currentTheme = html.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        if (isLightMode) {
-            htmlElement.classList.remove('light-mode');
-            localStorage.setItem('theme', 'dark-mode');
-            themeToggle.textContent = '💡';
-            console.log('Switched to dark mode');
-        } else {
-            htmlElement.classList.add('light-mode');
-            localStorage.setItem('theme', 'light-mode');
-            themeToggle.textContent = '🌙';
-            console.log('Switched to light mode');
-        }
+        html.setAttribute('data-theme', newTheme);
+        html.style.colorScheme = newTheme;
+        localStorage.setItem('portfolioTheme', newTheme);
+        themeToggle.textContent = newTheme === 'light' ? '🌙' : '💡';
     });
-});
+})();
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
