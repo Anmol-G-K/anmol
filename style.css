@@ -13,9 +13,14 @@
     --border: #2a3155;
     --success: #10b981;
     --warning: #f59e0b;
+    color-scheme: dark;
 }
 
-body.light-mode {
+html.light-mode {
+    color-scheme: light;
+}
+
+html.light-mode {
     --bg: #ffffff;
     --bg-secondary: #f9fafb;
     --text: #111111;
@@ -58,9 +63,8 @@ nav {
     transition: all 0.3s ease;
 }
 
-body.light-mode nav {
+html.light-mode nav {
     background: rgba(255, 255, 255, 0.95);
-    border-bottom: 2px solid var(--accent);
 }
 
 nav .container {
@@ -146,7 +150,7 @@ nav ul li a:hover::after {
     transition: background 0.3s ease;
 }
 
-body.light-mode .hero {
+html.light-mode .hero {
     background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 50%, #f0f4ff 100%);
 }
 
@@ -244,7 +248,7 @@ body.light-mode .hero {
     font-weight: 800;
 }
 
-body.light-mode .hero h1 {
+html.light-mode .hero h1 {
     background: linear-gradient(135deg, #111111, var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -491,7 +495,7 @@ h2 {
     flex-direction: column;
 }
 
-body.light-mode .project-card {
+html.light-mode .project-card {
     background: linear-gradient(135deg, rgba(243, 244, 246, 0.9), rgba(249, 250, 251, 0.9));
 }
 
@@ -518,7 +522,7 @@ body.light-mode .project-card {
     box-shadow: 0 16px 45px rgba(99, 102, 241, 0.25);
 }
 
-body.light-mode .project-card:hover {
+html.light-mode .project-card:hover {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(129, 140, 248, 0.05));
 }
 
@@ -639,7 +643,7 @@ footer {
     font-size: 0.9rem;
 }
 
-body.light-mode footer {
+html.light-mode footer {
     background: rgba(255, 255, 255, 0.8);
 }
 

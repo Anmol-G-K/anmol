@@ -4,27 +4,27 @@ const htmlElement = document.documentElement;
 
 // Check for saved theme preference or default to dark mode
 const currentTheme = localStorage.getItem('theme') || 'dark-mode';
-document.body.classList.add(currentTheme);
+if (currentTheme === 'light-mode') {
+    htmlElement.classList.add('light-mode');
+}
 
 // Theme toggle click handler
 themeToggle.addEventListener('click', () => {
-    const isDarkMode = document.body.classList.contains('dark-mode');
+    const isLightMode = htmlElement.classList.contains('light-mode');
     
-    if (isDarkMode) {
-        document.body.classList.remove('dark-mode');
-        document.body.classList.add('light-mode');
-        localStorage.setItem('theme', 'light-mode');
-        themeToggle.textContent = '🌙';
-    } else {
-        document.body.classList.remove('light-mode');
-        document.body.classList.add('dark-mode');
+    if (isLightMode) {
+        htmlElement.classList.remove('light-mode');
         localStorage.setItem('theme', 'dark-mode');
         themeToggle.textContent = '💡';
+    } else {
+        htmlElement.classList.add('light-mode');
+        localStorage.setItem('theme', 'light-mode');
+        themeToggle.textContent = '🌙';
     }
 });
 
 // Set initial toggle text based on current theme
-if (document.body.classList.contains('light-mode')) {
+if (htmlElement.classList.contains('light-mode')) {
     themeToggle.textContent = '🌙';
 } else {
     themeToggle.textContent = '💡';
