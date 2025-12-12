@@ -91,9 +91,8 @@ nav .logo {
 
 .lightning {
     display: inline-block;
-    color: #fbbf24;
-    text-shadow: 0 0 2px rgba(251, 191, 36, 0.3);
-    animation: stutter-blink 2s ease-in-out infinite;
+    color: #ffff00;
+    text-shadow: 0 0 2px rgba(255, 255, 0, 0.5);
     font-weight: bold;
 }
 

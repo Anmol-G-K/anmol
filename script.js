@@ -21,7 +21,7 @@
         pattern.forEach((step) => {
             setTimeout(() => {
                 lightning.style.opacity = step.opacity;
-                lightning.style.textShadow = `0 0 ${step.opacity * 4}px rgba(251, 191, 36, ${step.opacity * 0.5})`;
+                lightning.style.textShadow = `0 0 ${step.opacity * 6}px rgba(255, 255, 0, ${step.opacity * 10.2})`;
             }, delay);
             delay += step.duration;
         });
