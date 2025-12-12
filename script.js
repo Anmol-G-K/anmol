@@ -1,3 +1,35 @@
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+// Check for saved theme preference or default to dark mode
+const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+document.body.classList.add(currentTheme);
+
+// Theme toggle click handler
+themeToggle.addEventListener('click', () => {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light-mode');
+        themeToggle.textContent = '🌙';
+    } else {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+        themeToggle.textContent = '💡';
+    }
+});
+
+// Set initial toggle text based on current theme
+if (document.body.classList.contains('light-mode')) {
+    themeToggle.textContent = '🌙';
+} else {
+    themeToggle.textContent = '💡';
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
