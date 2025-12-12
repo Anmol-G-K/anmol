@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmol Krishhh - Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .resume-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .resume-header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .resume-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .resume-viewer {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 30px;
+            min-height: 600px;
+        }
+
+        .resume-viewer iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .resume-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .resume-actions a,
+        .resume-actions button {
+            padding: 12px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-back {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-light);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-back:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .resume-info {
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .resume-info h3 {
+            color: var(--accent-light);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .resume-info p {
+            color: var(--text-muted);
+            margin: 5px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .resume-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .resume-viewer iframe {
+                height: 500px;
+            }
+
+            .resume-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .resume-actions a,
+            .resume-actions button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo"><span class="lightning">⚡</span> Anmol Krishhh</div>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">💡</button>
+        </div>
+    </nav>
+
+    <!-- Resume Content -->
+    <div class="resume-container">
+        <!-- Header -->
+        <div class="resume-header">
+            <h1>📄 My Resume</h1>
+            <p>Electrical & Electronics Engineer | Hardware & Embedded Systems Specialist</p>
+        </div>
+
+        <!-- Info Box -->
+        <div class="resume-info">
+            <h3>✨ Resume Overview</h3>
+            <p>Below is my detailed resume showcasing my educational background, technical skills, projects, and professional experience in electrical engineering, embedded systems, and AI/ML applications.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">You can view the PDF inline below or download it for offline access.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="resume-actions">
+            <a href="resume/resume_1.pdf" download="Anmol_Krishhh_Resume.pdf" class="btn-download">📥 Download Resume</a>
+            <a href="resume/resume_1.pdf" target="_blank" class="btn-download">🔍 Open in New Tab</a>
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="resume-viewer">
+            <iframe src="resume/resume_1.pdf" title="Anmol Krishhh Resume"></iframe>
+        </div>
+
+        <!-- Fallback Message -->
+        <div class="resume-info" style="border-left-color: var(--warning); background: rgba(245, 158, 11, 0.05);">
+            <h3>⚠️ Cannot see the PDF?</h3>
+            <p>If the PDF viewer above doesn't work, you can:</p>
+            <p style="margin-top: 10px;">
+                <a href="resume/resume_1.pdf" download class="btn-download" style="display: inline-block;">Download the PDF</a> 
+                or 
+                <a href="resume/resume_1.pdf" target="_blank" class="btn-download" style="display: inline-block;">Open in browser</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Anmol Krishhh. Built with passion for circuits and code.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
