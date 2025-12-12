@@ -1,18 +1,38 @@
-// Randomized Lightning Blink Effect
+// Add animation styles dynamically to ensure they load
 (function() {
+    // Create style element if it doesn't exist
+    if (!document.getElementById('lightning-animation')) {
+        const style = document.createElement('style');
+        style.id = 'lightning-animation';
+        style.textContent = `
+            @keyframes stutter-blink {
+                0% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
+                10% { opacity: 0.4; text-shadow: 0 0 1px rgba(251, 191, 36, 0.2); }
+                20% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
+                30% { opacity: 0.3; text-shadow: 0 0 1px rgba(251, 191, 36, 0.2); }
+                40% { opacity: 1; text-shadow: 0 0 4px rgba(251, 191, 36, 0.5); }
+                100% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
     const lightning = document.querySelector('.lightning');
     if (!lightning) return;
     
+    // Apply animation with webkit prefixes for better browser support
+    lightning.style.animation = 'stutter-blink 2s ease-in-out infinite';
+    lightning.style.webkitAnimation = 'stutter-blink 2s ease-in-out infinite';
+    
     function getRandomDuration() {
-        // Random duration between 1.5s and 2.5s for visible stuttery effect
         return (Math.random() * 1 + 1.5).toFixed(2) + 's';
     }
     
     function triggerBlink() {
         const duration = getRandomDuration();
         lightning.style.animationDuration = duration;
+        lightning.style.webkitAnimationDuration = duration;
         
-        // Random wait between 2s to 4s before next blink sequence
         setTimeout(triggerBlink, (Math.random() * 2000 + 2000));
     }
     

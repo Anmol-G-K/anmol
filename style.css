@@ -29,6 +29,8 @@ html[data-theme="light"] {
     --warning: #f59e0b;
 }
 
+/* Cache bust: v2024-blink-animation */
+
 * {
     margin: 0;
     padding: 0;
