@@ -1,42 +1,37 @@
-// Add animation styles dynamically to ensure they load
+// Randomized Lightning Blink Effect - Direct Opacity Control
 (function() {
-    // Create style element if it doesn't exist
-    if (!document.getElementById('lightning-animation')) {
-        const style = document.createElement('style');
-        style.id = 'lightning-animation';
-        style.textContent = `
-            @keyframes stutter-blink {
-                0% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
-                10% { opacity: 0.4; text-shadow: 0 0 1px rgba(251, 191, 36, 0.2); }
-                20% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
-                30% { opacity: 0.3; text-shadow: 0 0 1px rgba(251, 191, 36, 0.2); }
-                40% { opacity: 1; text-shadow: 0 0 4px rgba(251, 191, 36, 0.5); }
-                100% { opacity: 1; text-shadow: 0 0 2px rgba(251, 191, 36, 0.3); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
     const lightning = document.querySelector('.lightning');
     if (!lightning) return;
     
-    // Apply animation with webkit prefixes for better browser support
-    lightning.style.animation = 'stutter-blink 2s ease-in-out infinite';
-    lightning.style.webkitAnimation = 'stutter-blink 2s ease-in-out infinite';
+    // Reset any animation styles that might not be working
+    lightning.style.animation = 'none';
+    lightning.style.webkitAnimation = 'none';
     
-    function getRandomDuration() {
-        return (Math.random() * 1 + 1.5).toFixed(2) + 's';
-    }
-    
-    function triggerBlink() {
-        const duration = getRandomDuration();
-        lightning.style.animationDuration = duration;
-        lightning.style.webkitAnimationDuration = duration;
+    function blink() {
+        // Random stutter pattern
+        const pattern = [
+            { opacity: 1, duration: 150 },
+            { opacity: 0.4, duration: 100 },
+            { opacity: 1, duration: 150 },
+            { opacity: 0.3, duration: 100 },
+            { opacity: 1, duration: 200 }
+        ];
         
-        setTimeout(triggerBlink, (Math.random() * 2000 + 2000));
+        let delay = 0;
+        pattern.forEach((step) => {
+            setTimeout(() => {
+                lightning.style.opacity = step.opacity;
+                lightning.style.textShadow = `0 0 ${step.opacity * 4}px rgba(251, 191, 36, ${step.opacity * 0.5})`;
+            }, delay);
+            delay += step.duration;
+        });
+        
+        // Wait before next blink sequence (2-4 seconds random)
+        setTimeout(blink, delay + (Math.random() * 2000 + 2000));
     }
     
-    triggerBlink();
+    // Start blinking
+    blink();
 })();
 (function() {
     const themeToggle = document.getElementById('themeToggle');
