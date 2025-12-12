@@ -1,34 +1,41 @@
 // Theme Toggle Functionality
-const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-
-// Check for saved theme preference or default to dark mode
-const currentTheme = localStorage.getItem('theme') || 'dark-mode';
-if (currentTheme === 'light-mode') {
-    htmlElement.classList.add('light-mode');
-}
-
-// Theme toggle click handler
-themeToggle.addEventListener('click', () => {
-    const isLightMode = htmlElement.classList.contains('light-mode');
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
     
-    if (isLightMode) {
-        htmlElement.classList.remove('light-mode');
-        localStorage.setItem('theme', 'dark-mode');
-        themeToggle.textContent = '💡';
-    } else {
-        htmlElement.classList.add('light-mode');
-        localStorage.setItem('theme', 'light-mode');
-        themeToggle.textContent = '🌙';
+    if (!themeToggle) {
+        console.error('Theme toggle button not found');
+        return;
     }
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+    
+    if (currentTheme === 'light-mode') {
+        htmlElement.classList.add('light-mode');
+        themeToggle.textContent = '🌙';
+    } else {
+        htmlElement.classList.remove('light-mode');
+        themeToggle.textContent = '💡';
+    }
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+        const isLightMode = htmlElement.classList.contains('light-mode');
+        
+        if (isLightMode) {
+            htmlElement.classList.remove('light-mode');
+            localStorage.setItem('theme', 'dark-mode');
+            themeToggle.textContent = '💡';
+            console.log('Switched to dark mode');
+        } else {
+            htmlElement.classList.add('light-mode');
+            localStorage.setItem('theme', 'light-mode');
+            themeToggle.textContent = '🌙';
+            console.log('Switched to light mode');
+        }
+    });
 });
-
-// Set initial toggle text based on current theme
-if (htmlElement.classList.contains('light-mode')) {
-    themeToggle.textContent = '🌙';
-} else {
-    themeToggle.textContent = '💡';
-}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
