@@ -363,7 +363,12 @@ h2 {
         About Section
 ---------------------------- */
 #about {
-    padding: 60px 20px;
+    padding: 80px 20px 60px 20px;
+}
+
+.about-section {
+    padding: 80px 20px 60px 20px !important;
+    overflow: visible !important;
 }
 
 .about-grid {
@@ -371,6 +376,7 @@ h2 {
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: start;
+    margin-top: 20px;
 }
 
 .about-text h3 {
