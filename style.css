@@ -70,7 +70,7 @@ a:hover {
 }
 
 @font-face {
-    font-family: "BaronNeue";
+    font-family: "Baron Neue";
     src: url("fonts/Baron Neue.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
@@ -78,7 +78,7 @@ a:hover {
 }
 
 @font-face {
-    font-family: "BaronNeue";
+    font-family: "Baron Neue Bold";
     src: url("fonts/Baron Neue Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
@@ -295,6 +295,15 @@ body.dark-mode .hero {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     animation: draw-circuit 4s ease-in-out infinite;
+}
+
+.engineer-title {
+    font-family: "Baron Neue", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 @keyframes draw-circuit {
@@ -514,6 +523,7 @@ body.dark-mode .subtitle {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
 
 /* ==========================================
    ABOUT SECTION
@@ -960,11 +970,3 @@ body.dark-mode footer {
     }
 }
 
-.engineer-title {
-    font-family: "Baron Neue", sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-bottom: 1rem;
-}
