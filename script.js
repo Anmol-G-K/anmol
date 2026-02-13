@@ -173,6 +173,28 @@ shineStyle.textContent = `
 `;
 document.head.appendChild(shineStyle);
 
+
+// ==========================================
+// CIRCUIT ANIMATION CONTROL
+// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    const text = "ElecTRIcal & ELECTRONICS EnGIneeR";
+    const typingElement = document.getElementById("typing-text");
+
+    let index = 0;
+    const typingSpeed = 80; // milliseconds per character
+
+    function typeEffect() {
+        if (index < text.length) {
+            typingElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeEffect, typingSpeed);
+        }
+    }
+
+    typeEffect();
+});
+
 // ==========================================
 // CIRCUIT ANIMATION CONTROL
 // ==========================================
