@@ -175,25 +175,47 @@ document.head.appendChild(shineStyle);
 
 
 // ==========================================
-// CIRCUIT ANIMATION CONTROL
+// NAME ANIMATION CONTROL
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
     const text = "ElecTRIcal & ELECTRONICS EnGIneeR";
     const typingElement = document.getElementById("typing-text");
 
     let index = 0;
-    const typingSpeed = 80; // milliseconds per character
+    let isDeleting = false;
 
-    function typeEffect() {
-        if (index < text.length) {
-            typingElement.textContent += text.charAt(index);
+    const typingSpeed = 80;
+    const deletingSpeed = 40;
+    const pauseAfterTyping = 1200;
+    const pauseAfterDeleting = 500;
+
+    function typeLoop() {
+        if (!isDeleting) {
+            // Typing forward
+            typingElement.textContent = text.substring(0, index + 1);
             index++;
-            setTimeout(typeEffect, typingSpeed);
+
+            if (index === text.length) {
+                setTimeout(() => isDeleting = true, pauseAfterTyping);
+            }
+        } else {
+            // Deleting backward
+            typingElement.textContent = text.substring(0, index - 1);
+            index--;
+
+            if (index === 0) {
+                isDeleting = false;
+                setTimeout(() => {}, pauseAfterDeleting);
+            }
         }
+
+        const delay = isDeleting ? deletingSpeed : typingSpeed;
+        setTimeout(typeLoop, delay);
     }
 
-    typeEffect();
+    typeLoop();
 });
+
 
 // ==========================================
 // CIRCUIT ANIMATION CONTROL
