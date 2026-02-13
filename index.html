@@ -8,15 +8,18 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar">
         <div class="container nav-container">
-            <div class="logo"><span class="lightning">⚡</span> Anmol Krishhh</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="resume.html">Resume</a></li>
+            <div class="logo" id="logoInteractive">
+                <span class="lightning animated-lightning">⚡</span>
+                <span class="logo-text">Anmol Krishhh</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">💡</button>
         </div>
@@ -24,46 +27,119 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-decorative hero-deco-left">🔌</div>
-        <div class="hero-decorative hero-deco-right">⚙️</div>
+        <!-- Circuit Background Animation -->
+        <div class="circuit-background">
+            <svg class="circuit-svg" viewBox="0 0 1200 600">
+                <defs>
+                    <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <rect width="1200" height="600" fill="url(#circuitGradient)"/>
+                <g class="circuit-lines">
+                    <path d="M 100 100 L 300 100 L 300 300 L 500 300" class="circuit-path"/>
+                    <path d="M 900 150 L 700 150 L 700 400 L 1000 400" class="circuit-path"/>
+                    <path d="M 200 500 L 200 250 L 600 250 L 600 500" class="circuit-path"/>
+                </g>
+                <circle cx="100" cy="100" r="6" class="circuit-node"/>
+                <circle cx="300" cy="100" r="6" class="circuit-node"/>
+                <circle cx="300" cy="300" r="6" class="circuit-node"/>
+                <circle cx="500" cy="300" r="6" class="circuit-node"/>
+                <circle cx="900" cy="150" r="6" class="circuit-node"/>
+                <circle cx="700" cy="150" r="6" class="circuit-node"/>
+                <circle cx="700" cy="400" r="6" class="circuit-node"/>
+                <circle cx="1000" cy="400" r="6" class="circuit-node"/>
+                <circle cx="200" cy="500" r="6" class="circuit-node"/>
+                <circle cx="200" cy="250" r="6" class="circuit-node"/>
+                <circle cx="600" cy="250" r="6" class="circuit-node"/>
+                <circle cx="600" cy="500" r="6" class="circuit-node"/>
+            </svg>
+        </div>
+
+        <div class="hero-decorative hero-deco-left float-animation">🔌</div>
+        <div class="hero-decorative hero-deco-right rotate-animation">⚙️</div>
+        
+        <!-- Blinking LED Indicator (Easter Egg Preserved) -->
         <div class="led-indicator" style="position: absolute; top: 30px; right: 30px; width: 15px; height: 15px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 10px #ef4444; animation: blink 1.5s infinite; z-index: 10;"></div>
+        
         <div class="hero-content">
-            <h1>Electrical & Electronics Engineer</h1>
-            <p class="subtitle">Crafting intelligent systems through hardware, software, and pure curiosity</p>
+            <div class="hero-text-wrapper">
+                <h1 class="hero-title">
+                    <span class="title-char">E</span>
+                    <span class="title-char">l</span>
+                    <span class="title-char">e</span>
+                    <span class="title-char">c</span>
+                    <span class="title-char">t</span>
+                    <span class="title-char">r</span>
+                    <span class="title-char">i</span>
+                    <span class="title-char">c</span>
+                    <span class="title-char">a</span>
+                    <span class="title-char">l</span>
+                    <span class="title-char"> </span>
+                    <span class="title-char">&</span>
+                    <span class="title-char"> </span>
+                    <span class="title-char">E</span>
+                    <span class="title-char">l</span>
+                    <span class="title-char">e</span>
+                    <span class="title-char">c</span>
+                    <span class="title-char">t</span>
+                    <span class="title-char">r</span>
+                    <span class="title-char">o</span>
+                    <span class="title-char">n</span>
+                    <span class="title-char">i</span>
+                    <span class="title-char">c</span>
+                    <span class="title-char">s</span>
+                    <span class="title-char"> </span>
+                    <span class="title-char">E</span>
+                    <span class="title-char">n</span>
+                    <span class="title-char">g</span>
+                    <span class="title-char">i</span>
+                    <span class="title-char">n</span>
+                    <span class="title-char">e</span>
+                    <span class="title-char">e</span>
+                    <span class="title-char">r</span>
+                </h1>
+            </div>
+            <p class="subtitle pulse-animation">Crafting intelligent systems through hardware, software, and pure curiosity</p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#projects" class="btn btn-primary glow-button">View Projects</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
-            <p>Powered by coffee, circuits, and curiosity</p>
+            <p class="tagline">⚡ Powered by coffee, circuits, and curiosity ⚡</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="container about-section">
-        <h2>🛠️ About Me</h2>
+    <section id="about" class="container about-section fade-in-section">
+        <h2 class="section-title">🛠️ About Me</h2>
         <div class="about-grid">
             <div class="about-text">
-                <h3>Electrical & Electronics Engineering Student</h3>
+                <h3 class="subsection-title">Electrical & Electronics Engineering Student</h3>
                 <p>I'm passionate about exploring the frontiers of mathematics, physics, and electronic systems. My journey is driven by a deep curiosity for how things work at the fundamental level, from circuit design to computational problem-solving.</p>
                 <p>Currently, I'm focused on strengthening my expertise in hardware architecture, embedded systems, and AI/ML applications in real-world scenarios. I believe the future lies at the intersection of hardware and software innovation.</p>
                 <p>Beyond engineering, I'm an avid photographer who captures moments that tell unique stories. Photography is my creative outlet for connecting with the world.</p>
             </div>
             <div>
                 <div class="interests">
-                    <div class="interest-item">
-                        <strong>🔌 Circuit Design</strong>
+                    <div class="interest-item hover-lift">
+                        <div class="interest-icon">🔌</div>
+                        <strong>Circuit Design</strong>
                         <p>Designing and analyzing electronic circuits</p>
                     </div>
-                    <div class="interest-item">
-                        <strong>⚡ Linear Algebra</strong>
+                    <div class="interest-item hover-lift">
+                        <div class="interest-icon">⚡</div>
+                        <strong>Linear Algebra</strong>
                         <p>Mathematical foundations for systems</p>
                     </div>
-                    <div class="interest-item">
-                        <strong>🤖 Robotics</strong>
+                    <div class="interest-item hover-lift">
+                        <div class="interest-icon">🤖</div>
+                        <strong>Robotics</strong>
                         <p>Building intelligent robotic systems</p>
                     </div>
-                    <div class="interest-item">
-                        <strong>🧠 AI/ML</strong>
+                    <div class="interest-item hover-lift">
+                        <div class="interest-icon">🧠</div>
+                        <strong>AI/ML</strong>
                         <p>Computational problem-solving with AI</p>
                     </div>
                 </div>
@@ -72,11 +148,11 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="container skills-section">
-        <h2>💻 Technical Skills</h2>
+    <section id="skills" class="container skills-section fade-in-section">
+        <h2 class="section-title">💻 Technical Skills</h2>
 
         <div class="skills-grid">
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>🖥️ Programming</h3>
                 <div class="skill-list">
                     <span class="skill-tag">C</span>
@@ -86,7 +162,7 @@
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>🎛️ Embedded Systems</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Arduino</span>
@@ -97,7 +173,7 @@
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>📊 Circuit Simulation</h3>
                 <div class="skill-list">
                     <span class="skill-tag">LTSpice</span>
@@ -107,7 +183,7 @@
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>📐 PCB Design</h3>
                 <div class="skill-list">
                     <span class="skill-tag">KiCad</span>
@@ -115,7 +191,7 @@
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>🧠 AI / Machine Learning</h3>
                 <div class="skill-list">
                     <span class="skill-tag">PyTorch</span>
@@ -124,7 +200,7 @@
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="skill-category skill-card">
                 <h3>🎨 Design Tools</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Photoshop</span>
@@ -136,11 +212,11 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="container projects-section">
-        <h2>🚀 Featured Projects</h2>
+    <section id="projects" class="container projects-section fade-in-section">
+        <h2 class="section-title">🚀 Featured Projects</h2>
         <div class="projects-grid">
 
-            <div class="project-card">
+            <div class="project-card project-hover-effect">
                 <div class="project-icon">🦾</div>
                 <h3>Gesture Controlled Robotic Arm</h3>
                 <p>An innovative robotic arm system controlled through hand gestures and computer vision, demonstrating real-time signal processing and robotics integration.</p>
@@ -152,7 +228,7 @@
                 <a href="https://github.com/Robo-Linkers/Gesture-controlled-robotic-arm" class="project-link" target="_blank">View on GitHub</a>
             </div>
 
-            <div class="project-card">
+            <div class="project-card project-hover-effect">
                 <div class="project-icon">🤖</div>
                 <h3>Electronic Component Classifier</h3>
                 <p>Machine learning system for automated classification and sorting of electronic components, combining computer vision with embedded systems.</p>
@@ -164,7 +240,7 @@
                 <a href="https://github.com/Vanguard-s/Electronic-Component-Sorter" class="project-link" target="_blank">View on GitHub</a>
             </div>
 
-            <div class="project-card">
+            <div class="project-card project-hover-effect">
                 <div class="project-icon">⚙️</div>
                 <h3>Hardware Design & Optimization</h3>
                 <p>Ongoing exploration in PCB design, circuit optimization, and hardware architecture. Working with KiCad, Altium, and simulation tools for real-world applications.</p>
@@ -180,16 +256,16 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="container contact-section">
-        <h2>📞 Get In Touch</h2>
+    <section id="contact" class="container contact-section fade-in-section">
+        <h2 class="section-title">📞 Get In Touch</h2>
         <div class="contact-content">
             <p>Interested in collaborating on projects or just want to chat about electronics and robotics? Feel free to reach out!</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/anmolkrish" class="social-link" title="LinkedIn">in</a>
-                <a href="https://github.com/Anmol-G-K" class="social-link" title="GitHub">⚙️</a>
-                <a href="mailto:booleanconnoisseurs@gmail.com" class="social-link" title="Email">✉️</a>
+                <a href="https://www.linkedin.com/in/anmolkrish" class="social-link social-link-hover" title="LinkedIn">in</a>
+                <a href="https://github.com/Anmol-G-K" class="social-link social-link-hover" title="GitHub">⚙️</a>
+                <a href="mailto:booleanconnoisseurs@gmail.com" class="social-link social-link-hover" title="Email">✉️</a>
             </div>
-            <a href="mailto:booleanconnoisseurs@gmail.com" class="btn btn-primary">Send me an Email</a>
+            <a href="mailto:booleanconnoisseurs@gmail.com" class="btn btn-primary glow-button">Send me an Email</a>
         </div>
     </section>
 
