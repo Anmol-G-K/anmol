@@ -3,188 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmol Krishhh - Resume</title>
+    <title>Anmol Krishhh — Resume</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/flash_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/flash_16.png">
+    <link rel="apple-touch-icon" href="images/flash_256.png">
     <link rel="stylesheet" href="style.css">
     <style>
         /* ==========================================
-           RESUME PAGE STYLING
+           RESUME PAGE — Neo-Brutalist overrides
+           (style.css provides the base system)
            ========================================== */
 
-        .resume-container {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
-            animation: fade-in-up 0.8s ease-out;
-        }
-
         @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(32px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .resume-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid transparent;
-            border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;
-            position: relative;
-        }
-
-        .resume-header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
-
-        .resume-header p {
-            color: #64748b;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        body.dark-mode .resume-header p {
-            color: #cbd5e1;
-        }
-
-        .resume-viewer {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 25px;
-            margin-bottom: 30px;
-            min-height: 600px;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        body.dark-mode .resume-viewer {
-            background: #1e293b;
-            border-color: #334155;
-        }
-
-        .resume-viewer:hover {
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
-            border-color: #3b82f6;
-        }
-
-        .resume-viewer iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .resume-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .resume-actions a,
-        .resume-actions button {
-            padding: 13px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-        }
-
-        .btn-download:hover {
-            transform: translateY(-3px);
-        }
-
-        .btn-back {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-            border: 2px solid #3b82f6;
-        }
-
-        .btn-back:hover {
-            background: #3b82f6;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .resume-info {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
-            border-left: 5px solid #3b82f6;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .resume-info {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-        }
-
-        .resume-info h3 {
-            color: #3b82f6;
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        body.dark-mode .resume-info h3 {
-            color: #60a5fa;
-        }
-
-        .resume-info p {
-            color: #475569;
-            margin: 8px 0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        body.dark-mode .resume-info p {
-            color: #cbd5e1;
-        }
-
-        /* SIMPLE BUTTON STYLE FOR BOTTOM SECTION ONLY */
-        .simple-btn {
-            display: inline-block;
-            padding: 10px 22px;
-            border-radius: 8px;
-            background: #f59e0b;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-
-        .simple-btn:hover {
-            background: #d97706;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .resume-viewer iframe { height: 500px; }
-        }
-
-        @media (max-width: 480px) {
-            .resume-viewer iframe { height: 400px; }
+        .resume-container {
+            animation: fade-in-up 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
         }
     </style>
 </head>
@@ -192,15 +29,16 @@
 
     <nav class="navbar">
         <div class="container nav-container">
+            <!-- id="logoInteractive" preserved — Easter egg JS targets this -->
             <div class="logo" id="logoInteractive">
                 <span class="lightning animated-lightning">⚡</span>
                 <span class="logo-text">Anmol Krishhh</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#about"    class="nav-link">About</a></li>
+                <li><a href="index.html#skills"   class="nav-link">Skills</a></li>
                 <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="index.html#contact"  class="nav-link">Contact</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle">💡</button>
         </div>
@@ -209,31 +47,33 @@
     <div class="resume-container">
 
         <div class="resume-header">
-            <h1>📄 My Resume</h1>
-            <p>Electrical & Electronics Engineer | Hardware & Embedded Systems Specialist</p>
+            <h1>Resume</h1>
+            <p>Electrical &amp; Electronics Engineer — Hardware &amp; Embedded Systems Specialist</p>
         </div>
 
         <div class="resume-info">
-            <h3>✨ Resume Overview</h3>
+            <h3>Resume Overview</h3>
             <p>Below is my detailed resume showcasing my educational background, technical skills, projects, and professional experience in electrical engineering, embedded systems, and AI/ML applications.</p>
         </div>
 
         <div class="resume-actions">
-            <a href="resume/resume_1.pdf" download class="btn-download">📥 Download Resume</a>
-            <a href="resume/resume_1.pdf" target="_blank" class="btn-download">🔍 Open in New Tab</a>
+            <!-- Relative paths preserved -->
+            <a href="resume/resume_1.pdf" download class="btn-download">↓ Download Resume</a>
+            <a href="resume/resume_1.pdf" target="_blank" class="btn-download">⊞ Open in New Tab</a>
             <a href="index.html" class="btn-back">← Back to Home</a>
         </div>
 
         <div class="resume-viewer">
-            <iframe src="resume/resume_1.pdf"></iframe>
+            <!-- Relative path preserved -->
+            <iframe src="resume/resume_1.pdf" title="Anmol Krishhh Resume PDF"></iframe>
         </div>
 
-        <div class="resume-info" style="border-left-color: #f59e0b;">
-            <h3 style="color: #f59e0b;">⚠️ Cannot see the PDF?</h3>
-            <p>If the viewer above doesn’t load, you can:</p>
+        <div class="resume-info" style="border-left-color: var(--electric); border-top-color: var(--electric);">
+            <h3 style="color: var(--electric);">Cannot see the PDF?</h3>
+            <p>If the viewer above doesn't load, you can:</p>
             <p>
                 <a href="resume/resume_1.pdf" download class="simple-btn">Download the PDF</a>
-                or
+                &nbsp;or&nbsp;
                 <a href="resume/resume_1.pdf" target="_blank" class="simple-btn">Open in browser</a>
             </p>
         </div>
@@ -241,7 +81,8 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Anmol Krishhh. Built with passion for circuits and code.</p>
+        <p>&copy; 2026 Anmol Krishhh — Built with passion for circuits and code.</p>
+        <div class="icon-attribution">Icons made from <a href="https://www.onlinewebfonts.com/icon" target="_blank" rel="noopener noreferrer">svg icons</a> is licensed by CC BY 4.0</div>
     </footer>
 
     <script src="script.js"></script>

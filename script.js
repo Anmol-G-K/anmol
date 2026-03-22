@@ -1,6 +1,7 @@
 // ==========================================
 // DYNAMIC PORTFOLIO SCRIPT
 // Interactive Effects & Theme Management
+// Neo-Brutalist 2026 Edition
 // ==========================================
 
 // ==========================================
@@ -11,7 +12,6 @@ const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
 const bodyElement = document.body;
 
-// Check for saved theme preference or default to light mode
 const currentTheme = localStorage.getItem('theme') || 'light';
 if (currentTheme === 'dark') {
     bodyElement.classList.add('dark-mode');
@@ -34,10 +34,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
@@ -51,15 +48,12 @@ const sections = document.querySelectorAll('section[id]');
 
 function updateActiveLink() {
     let current = '';
-    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         if (scrollY >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
-
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
@@ -67,38 +61,31 @@ function updateActiveLink() {
         }
     });
 }
-
 window.addEventListener('scroll', updateActiveLink);
 
 // ==========================================
-// INTERSECTION OBSERVER FOR ANIMATIONS
+// INTERSECTION OBSERVER — fade-in-section
+// Uses .visible class for CSS spring transition
 // ==========================================
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -80px 0px' };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all elements with fade-in-section class
 document.querySelectorAll('.fade-in-section').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.8s ease-out';
     observer.observe(el);
 });
 
 // ==========================================
-// LOGO EASTER EGG
+// LOGO EASTER EGG — Elastic spring-back
+// Preserved: id="logoInteractive", clickCount=3
 // ==========================================
 
 let clickCount = 0;
@@ -106,132 +93,116 @@ const logo = document.getElementById('logoInteractive');
 
 logo.addEventListener('click', () => {
     clickCount++;
-    
-    // Rainbow animation on 3 clicks
+
     if (clickCount === 3) {
-        logo.style.animation = 'rainbow-pulse 0.6s ease-out';
+        // Remove class first so re-triggering works
+        logo.classList.remove('easter-egg-spring');
+        // Force reflow
+        void logo.offsetWidth;
+        // Add class — CSS uses cubic-bezier(0.34, 1.8, 0.64, 1) elastic ease
+        logo.classList.add('easter-egg-spring');
+
+        // Clean up after animation completes
         setTimeout(() => {
-            logo.style.animation = '';
-        }, 600);
+            logo.classList.remove('easter-egg-spring');
+        }, 750);
+
         clickCount = 0;
     }
 });
 
-// Add CSS animation for rainbow effect
+// Inline rainbow-pulse keyframe still injected for compatibility
+// (CSS class version is primary; this is fallback for any direct .style.animation calls)
 const style = document.createElement('style');
 style.textContent = `
     @keyframes rainbow-pulse {
-        0% {
-            transform: scale(1);
-            color: #3b82f6;
-        }
-        25% {
-            transform: scale(1.2) rotate(10deg);
-            color: #8b5cf6;
-        }
-        50% {
-            transform: scale(1.1) rotate(-5deg);
-            color: #10b981;
-        }
-        75% {
-            transform: scale(1.15) rotate(5deg);
-            color: #f59e0b;
-        }
-        100% {
-            transform: scale(1);
-            color: #ef4444;
-        }
+        0%   { transform: scale(1);               color: #0040ff; }
+        20%  { transform: scale(1.35) rotate(12deg); color: #ff3c00; }
+        40%  { transform: scale(0.88) rotate(-6deg); color: #c8ff00; }
+        60%  { transform: scale(1.22) rotate(6deg);  color: #ff00aa; }
+        80%  { transform: scale(0.95) rotate(-2deg); color: #0040ff; }
+        100% { transform: scale(1);                  color: inherit;  }
     }
 `;
 document.head.appendChild(style);
 
 // ==========================================
-// SKILL TAGS HOVER EFFECT
+// SKILL TAGS HOVER — Spring-back shine
 // ==========================================
 
 const skillTags = document.querySelectorAll('.skill-tag');
 
 skillTags.forEach(tag => {
-    tag.addEventListener('mouseenter', function() {
-        this.style.animation = 'skill-shine 0.6s ease-out';
+    tag.addEventListener('mouseenter', function () {
+        this.style.animation = 'none';
+        void this.offsetWidth;
+        this.style.animation = 'skill-shine 0.55s cubic-bezier(0.34, 1.7, 0.64, 1)';
+    });
+    tag.addEventListener('animationend', function () {
+        this.style.animation = '';
     });
 });
 
 const shineStyle = document.createElement('style');
 shineStyle.textContent = `
     @keyframes skill-shine {
-        0% {
-            filter: brightness(1);
-        }
-        50% {
-            filter: brightness(1.5);
-        }
-        100% {
-            filter: brightness(1);
-        }
+        0%   { filter: brightness(1);   transform: scale(1); }
+        30%  { filter: brightness(2.2); transform: scale(1.2) translateY(-3px); }
+        55%  { filter: brightness(0.8); transform: scale(0.93); }
+        80%  { filter: brightness(1.5); transform: scale(1.06); }
+        100% { filter: brightness(1);   transform: scale(1); }
     }
 `;
 document.head.appendChild(shineStyle);
 
+// ==========================================
+// NAME ANIMATION CONTROL — Typing effect
+// ==========================================
 
-// ==========================================
-// NAME ANIMATION CONTROL
-// ==========================================
 document.addEventListener("DOMContentLoaded", function () {
     const text = "ElecTRIcal & ELECTRONICS EnGIneeR";
     const typingElement = document.getElementById("typing-text");
 
+    if (!typingElement) return;
+
     let index = 0;
     let isDeleting = false;
 
-    const typingSpeed = 80;
-    const deletingSpeed = 40;
-    const pauseAfterTyping = 1200;
+    const typingSpeed    = 80;
+    const deletingSpeed  = 40;
+    const pauseAfterTyping   = 1200;
     const pauseAfterDeleting = 500;
 
     function typeLoop() {
         if (!isDeleting) {
-            // Typing forward
             typingElement.textContent = text.substring(0, index + 1);
             index++;
-
             if (index === text.length) {
-                setTimeout(() => isDeleting = true, pauseAfterTyping);
+                setTimeout(() => { isDeleting = true; }, pauseAfterTyping);
             }
         } else {
-            // Deleting backward
             typingElement.textContent = text.substring(0, index - 1);
             index--;
-
             if (index === 0) {
                 isDeleting = false;
                 setTimeout(() => {}, pauseAfterDeleting);
             }
         }
-
-        const delay = isDeleting ? deletingSpeed : typingSpeed;
-        setTimeout(typeLoop, delay);
+        setTimeout(typeLoop, isDeleting ? deletingSpeed : typingSpeed);
     }
 
     typeLoop();
 });
-
 
 // ==========================================
 // CIRCUIT ANIMATION CONTROL
 // ==========================================
 
 const circuitPaths = document.querySelectorAll('.circuit-path');
-const animationControlStyle = document.createElement('style');
-
-let animationPaused = false;
 
 document.addEventListener('scroll', () => {
-    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     circuitPaths.forEach(path => {
-        if (!animationPaused) {
-            path.style.animationPlayState = 'running';
-        }
+        path.style.animationPlayState = 'running';
     });
 });
 
@@ -242,36 +213,34 @@ document.addEventListener('scroll', () => {
 const projectCards = document.querySelectorAll('.project-card');
 
 projectCards.forEach((card, index) => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         projectCards.forEach((c, i) => {
             if (i !== index) {
-                c.style.opacity = '0.7';
-                c.style.transform = 'scale(0.95)';
+                c.style.opacity = '0.6';
+                c.style.transition = 'opacity 0.25s ease';
             }
         });
     });
-    
-    card.addEventListener('mouseleave', function() {
+    card.addEventListener('mouseleave', function () {
         projectCards.forEach((c) => {
             c.style.opacity = '1';
-            c.style.transform = 'scale(1)';
         });
     });
 });
 
 // ==========================================
-// INTEREST ITEMS HOVER
+// INTEREST ITEMS HOVER — Elastic spring
 // ==========================================
 
 const interestItems = document.querySelectorAll('.interest-item');
 
 interestItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        this.style.boxShadow = '0 20px 40px rgba(139, 92, 246, 0.4)';
+    item.addEventListener('mouseenter', function () {
+        // CSS handles the transform spring; JS keeps for legacy compatibility
+        this.style.boxShadow = '6px 6px 0 var(--fg)';
     });
-    
-    item.addEventListener('mouseleave', function() {
-        this.style.boxShadow = '0 10px 30px rgba(59, 130, 246, 0.1)';
+    item.addEventListener('mouseleave', function () {
+        this.style.boxShadow = '';
     });
 });
 
@@ -280,46 +249,37 @@ interestItems.forEach(item => {
 // ==========================================
 
 document.querySelectorAll('.btn, .project-link').forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
+
+        ripple.style.width  = ripple.style.height = size + 'px';
+        ripple.style.left   = x + 'px';
+        ripple.style.top    = y + 'px';
         ripple.classList.add('ripple');
-        
+
         this.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
+        setTimeout(() => ripple.remove(), 700);
     });
 });
 
-// Add ripple effect styles
+// Ripple CSS — elastic spring version
 const rippleStyle = document.createElement('style');
 rippleStyle.textContent = `
-    .btn, .project-link {
-        position: relative;
-        overflow: hidden;
-    }
-    
+    .btn, .project-link { position: relative; overflow: hidden; }
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 60, 0, 0.3);
         transform: scale(0);
-        animation: ripple-animation 0.6s ease-out;
+        animation: ripple-animation 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
         pointer-events: none;
     }
-    
     @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
+        to { transform: scale(4); opacity: 0; }
     }
 `;
 document.head.appendChild(rippleStyle);
@@ -335,29 +295,28 @@ if (hero && circuitBackground) {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         if (scrolled < window.innerHeight) {
-            circuitBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            circuitBackground.style.transform = `translateY(${scrolled * 0.4}px)`;
             hero.style.opacity = 1 - scrolled / (window.innerHeight * 1.5);
         }
     });
 }
 
 // ==========================================
-// PERFORMANCE OPTIMIZATION: LAZY LOADING
+// PERFORMANCE: LAZY LOADING
 // ==========================================
 
 if ('IntersectionObserver' in window) {
     const lazyImages = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    const imageObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.dataset.src;
                 img.removeAttribute('data-src');
-                observer.unobserve(img);
+                obs.unobserve(img);
             }
         });
     });
-    
     lazyImages.forEach(img => imageObserver.observe(img));
 }
 
@@ -366,27 +325,21 @@ if ('IntersectionObserver' in window) {
 // ==========================================
 
 window.addEventListener('load', () => {
-    const titleChars = document.querySelectorAll('.title-char');
-    titleChars.forEach((char, index) => {
-        setTimeout(() => {
-            char.style.opacity = '1';
-        }, index * 50);
+    document.querySelectorAll('.title-char').forEach((char, index) => {
+        setTimeout(() => { char.style.opacity = '1'; }, index * 50);
     });
 });
 
 // ==========================================
-// ACTIVE NAV LINK STYLING
+// ACTIVE NAV LINK STYLE
 // ==========================================
 
 const style2 = document.createElement('style');
 style2.textContent = `
     .nav-link.active {
-        color: var(--primary-color);
+        background: var(--fg);
+        color: var(--bg);
         font-weight: 700;
-    }
-    
-    .nav-link.active::after {
-        width: 100%;
     }
 `;
 document.head.appendChild(style2);
@@ -396,41 +349,41 @@ document.head.appendChild(style2);
 // ==========================================
 
 window.addEventListener('load', () => {
-    document.body.style.animation = 'page-load 0.5s ease-out';
+    document.body.style.animation = 'page-load 0.4s ease-out';
 });
 
 const pageLoadStyle = document.createElement('style');
 pageLoadStyle.textContent = `
     @keyframes page-load {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+        from { opacity: 0; }
+        to   { opacity: 1; }
     }
 `;
 document.head.appendChild(pageLoadStyle);
 
 // ==========================================
-// CONSOLE EASTER EGG
+// CONSOLE EASTER EGG — preserved
 // ==========================================
 
 console.log(
     '%c⚡ Welcome to Anmol Krishhh\'s Portfolio ⚡',
-    'color: #3b82f6; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #3b82f6;'
+    'color: #ff3c00; font-size: 20px; font-weight: bold; letter-spacing: 2px;'
 );
 console.log(
     '%c"From circuits to code, everything is possible!"',
-    'color: #8b5cf6; font-size: 14px; font-style: italic;'
+    'color: #0040ff; font-size: 14px; font-style: italic;'
 );
 console.log(
-    '%cElectrical & Electronics Engineer | Full-Stack Maker',
-    'color: #10b981; font-size: 12px;'
+    '%cElectrical & Electronics Engineer | Hardware & Embedded Systems',
+    'color: #c8ff00; background: #0d0d0d; font-size: 12px; padding: 2px 6px;'
+);
+console.log(
+    '%cTip: Click the logo 3 times for a surprise! ⚡',
+    'color: #ff3c00; font-size: 12px;'
 );
 
 // ==========================================
-// MOUSE TRAIL EFFECT (OPTIONAL - SUBTLE)
+// MOUSE TRAIL — hero section cursor glow
 // ==========================================
 
 let mouseX = 0;
@@ -439,14 +392,13 @@ let mouseY = 0;
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
-    // Create subtle glow effect following cursor in hero section
-    const hero = document.querySelector('.hero');
-    if (hero && window.scrollY < window.innerHeight) {
-        const rect = hero.getBoundingClientRect();
+
+    const heroEl = document.querySelector('.hero');
+    if (heroEl && window.scrollY < window.innerHeight) {
+        const rect = heroEl.getBoundingClientRect();
         if (mouseY > rect.top && mouseY < rect.bottom) {
-            hero.style.setProperty('--mouse-x', mouseX + 'px');
-            hero.style.setProperty('--mouse-y', mouseY + 'px');
+            heroEl.style.setProperty('--mouse-x', mouseX + 'px');
+            heroEl.style.setProperty('--mouse-y', mouseY + 'px');
         }
     }
 });
@@ -457,40 +409,19 @@ document.addEventListener('mousemove', (e) => {
 
 const progressBar = document.createElement('div');
 progressBar.id = 'scroll-progress';
-progressBar.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    width: 0;
-    z-index: 2000;
-    box-shadow: 0 0 10px #3b82f6;
-`;
 document.body.appendChild(progressBar);
 
 window.addEventListener('scroll', () => {
-    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    const scrollPercent = (window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     progressBar.style.width = scrollPercent + '%';
 });
-
-console.log(
-    '%cTip: Click the logo 3 times for a surprise! 🎨',
-    'color: #f59e0b; font-size: 12px;'
-);
-
-// ==========================================
-// CONTACT FORM VALIDATION (IF NEEDED)
-// ==========================================
-
-// Form would go here if contact form was added
 
 // ==========================================
 // ACCESSIBILITY: KEYBOARD NAVIGATION
 // ==========================================
 
 document.addEventListener('keydown', (e) => {
-    // Skip to main content on Ctrl+1
     if (e.ctrlKey && e.key === '1') {
         document.querySelector('.hero-content')?.focus();
     }
